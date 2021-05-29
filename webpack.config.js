@@ -15,11 +15,12 @@ module.exports = {
         new CleanWebpackPlugin(), //Dọn dẹp file dư thừa
         new HtmlWebpackPlugin({    //Tối ưu hóa file html
             title : "Caching",
-            template: "./src/index.html"
+            template: "./public/index.html",
+            favicon: "./public/assets/favicon.png"
         }),
         new MiniCssExtractPlugin({     //Minify CSS
             filename: "style.min.css"
-        })
+        }),
     ],
     optimization: {
         splitChunks: {  //Gom chung file thư viện
@@ -45,6 +46,21 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader,"css-loader"]
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg|ico)$/i,
+                use: [
+                  'url-loader?limit=10000',
+                  'img-loader'
+                ]
+            },
+            {
+                test: /\.json$/,
+                loader: 'json-loader'
+            },
+            {
+                test: /\.txt$/i,
+                use: 'raw-loader',
             }
         ]
     },
