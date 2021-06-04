@@ -61,7 +61,11 @@ module.exports = {
             {
                 test: /\.txt$/i,
                 use: 'raw-loader',
-            }
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                use: "file-loader"
+            },
         ]
     },
     devServer: {    //Chạy webpack server
